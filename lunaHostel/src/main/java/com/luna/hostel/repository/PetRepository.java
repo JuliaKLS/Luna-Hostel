@@ -1,6 +1,6 @@
-package repository;
+package com.luna.hostel.repository;
 
-import entity.Pet;
+import com.luna.hostel.entity.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

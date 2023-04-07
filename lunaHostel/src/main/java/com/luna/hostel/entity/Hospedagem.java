@@ -1,4 +1,4 @@
-package entity;
+package com.luna.hostel.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -14,12 +14,11 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tb_hospedagem")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
 public class Hospedagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private LocalDate dataDeEntrada;
 
