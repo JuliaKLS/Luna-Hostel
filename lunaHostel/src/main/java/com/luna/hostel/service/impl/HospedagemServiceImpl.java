@@ -1,7 +1,11 @@
 package com.luna.hostel.service.impl;
 
 import com.luna.hostel.entity.Hospedagem;
+import com.luna.hostel.entity.Pet;
+import com.luna.hostel.service.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.luna.hostel.repository.HospedagemRepository;
 import com.luna.hostel.service.IHospedagemService;
@@ -17,7 +21,8 @@ public class HospedagemServiceImpl implements IHospedagemService {
 
     @Autowired
     private HospedagemRepository hospedagemRepository;
-    private Integer id;
+    @Autowired
+    private IPetService petService;
 
     @Override
     public List<Hospedagem> getAll(String date) {
@@ -26,7 +31,6 @@ public class HospedagemServiceImpl implements IHospedagemService {
 
         }else {
 
-            //convert String to LocalDate
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate localDate = LocalDate.parse(date, formatter);
 
@@ -52,8 +56,13 @@ public class HospedagemServiceImpl implements IHospedagemService {
 
     @Override
     public Hospedagem create(Hospedagem hospedagem) {
-        Hospedagem criarHospedagem = hospedagemRepository.save(hospedagem);
-        return criarHospedagem;
+        Pet pet = petService.getById(hospedagem.getPet().getId());
+        if (pet != null){
+            Hospedagem criarHospedagem = hospedagemRepository.save(hospedagem);
+            return criarHospedagem;
+        }else {
+            throw new RuntimeException("Pet não existente.");
+        }
     }
 
     @Override

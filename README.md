@@ -7,7 +7,7 @@ Aplicação que controla o fluxo de hospedagem de animais pets.
 
 - API Rest apta a receber requisições via Postman;
 - Framework Spring Boot e Java 8 ou superior;
-- Persistência com JPA em banco de dados PostgreSQL;
+- Persistência com JPA em banco de dados PostgreSQL ou H2;
 - Usar Repository Pattern (Controller, Service, Repository)
 - Usar porta 8090;
 - Interface gráfica que exiba a documentação da API (SpringFox).

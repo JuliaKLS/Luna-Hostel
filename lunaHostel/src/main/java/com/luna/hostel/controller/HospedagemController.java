@@ -37,7 +37,11 @@ public class HospedagemController {
     @PostMapping
     public ResponseEntity<Hospedagem> create(@RequestBody Hospedagem hospedagem) {
         Hospedagem criarHospedagem = hospedagemService.create(hospedagem);
-        return new ResponseEntity<>(criarHospedagem, HttpStatus.OK);
+        if (criarHospedagem != null){
+            return new ResponseEntity<>(criarHospedagem, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(criarHospedagem, HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping
